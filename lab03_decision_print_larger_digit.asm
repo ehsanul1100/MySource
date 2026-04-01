@@ -5,6 +5,7 @@
     MSG1 DB 'LAB 3: ENTER FIRST DIGIT: $'
     MSG2 DB 0DH,0AH,'ENTER SECOND DIGIT: $'
     MSG3 DB 0DH,0AH,'LARGER DIGIT IS: $'
+    New_Line DB 0DH,0AH, '$'
 
 .CODE
 
@@ -13,15 +14,6 @@ PRINT MACRO P                ;macro: print $-string
     LEA DX,P                 ;DX = address
     INT 21H                  ;call DOS
 ENDM
-
-New_Line PROC                ;proc: newline
-    MOV AH,2                 ;DOS: print char
-    MOV DL,13                ;CR
-    INT 21H                  ;print CR
-    MOV DL,10                ;LF
-    INT 21H                  ;print LF
-    RET                      ;return
-New_Line ENDP                ;end proc
 
 MAIN PROC                    ;program start
     MOV AX,@DATA             ;load data seg
@@ -38,7 +30,6 @@ MAIN PROC                    ;program start
     MOV CL,AL                ;save second
 
     PRINT MSG3               ;show label
-
     CMP BL,CL                ;compare ASCII digits
     JAE FIRST_IS_LARGER      ;if BL>=CL
 

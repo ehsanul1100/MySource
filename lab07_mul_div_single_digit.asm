@@ -58,6 +58,7 @@ DO_DIV:                      ;division part
     MOV BL,CL                ;BL = B
 
     DIV BL                   ;AL=quotient AH=remainder
+    MOV BL,AH                ;BL = remainder (save before AH is clobbered)
 
     ADD AL,'0'               ;quotient to ASCII
     MOV DL,AL                ;DL = quotient
@@ -68,7 +69,7 @@ DO_DIV:                      ;division part
     MOV AH,2                 ;DOS: print char
     INT 21H                  ;print comma
 
-    MOV AL,AH                ;AL = remainder
+    MOV AL,BL                ;AL = remainder (from saved register)
     ADD AL,'0'               ;remainder to ASCII
     MOV DL,AL                ;DL = remainder
     MOV AH,2                 ;DOS: print char

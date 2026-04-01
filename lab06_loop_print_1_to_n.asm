@@ -29,8 +29,7 @@ MAIN PROC                    ;program start
 
     MOV DL,'1'               ;DL = first char
 
-    CMP CX,0                 ;N == 0 ?
-    JE DONE                  ;if yes, end
+    JCXZ DONE                ;if CX == 0, jump to DONE
 
 PRINT_LOOP:                  ;loop start
     MOV AH,2                 ;DOS: print char
