@@ -93,13 +93,10 @@
 1. Initialize `DS`.
 2. Read one digit and convert to number (0..9).
 3. Check odd/even using `TEST value, 1`.
-4. Print “ODD” if bit0=1, else “EVEN”.
-5. Do shift/rotate demos (results kept in registers):
-   - `SHL` by 1
-   - `SHR` by 1
-   - `ROL` by 1
-   - `ROR` by 1
-6. Print a note telling which registers to inspect, then exit.
+4. Print "O" if odd, else "E".
+5. Save original value in `BL`.
+6. For each shift/rotate operation, load `AL` from `BL`, perform operation (`SHL`, `SHR`, `ROL`, `ROR` by 1), and print result.
+7. Exit.
 
 ## lab11_general_mini_calculator.asm
 
